@@ -20,6 +20,7 @@ Please be ware that it is unsafe to use ucache in a multi-threaded environment e
 
 ## Build
 Just make it. IB/RDMA supports might be installed for compilation of the ib module.
+If you are using ubuntu, you may use "sudo apt-get install libibverbs-dev" to install IB module.
 SLB uses xxhash in its code. It will be automatically downloaded by a few rules in Makefile.local at the first build.
 
 ## Run
