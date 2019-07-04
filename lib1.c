@@ -2692,7 +2692,6 @@ rgen_async_wait_at(struct rgen * const gen, const u64 id)
 {
     abool * const pavail = &(gen->wi.avail[id]);
     while (atomic_load(pavail) == false) usleep(1);
-
 }
 
 inline void

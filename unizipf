@@ -1,0 +1,24 @@
+ ./map_test.out rgen unizipf 1 10000 0.8
+maptest_main need `api' keyword to start benchmark
+kvmap_help_message Usage: <stdout> <stderr> {api ... {rgen ... {pass ...}}}
+kvmap_api_helper_message Usage: api <cache-mb> <map-type> <param1> ...
+kvmap_api_helper_message example: api 0 kvmap2
+kvmap_api_helper_message example: api 0 cuckoo
+kvmap_api_helper_message example: api 0 skiplist
+kvmap_api_helper_message example: api 0 chainmap
+kvmap_api_helper_message example: api 0 bptree
+kvmap_api_helper_message example: api 0 tcpmap <host> <port>
+maptest_passes_message Usage: {rgen ... {pass ...}}
+rgen_helper_message Usage: rgen <type> ...
+rgen_helper_message example: rgen unizipf <min> <max> <ufactor>
+rgen_helper_message example: rgen uniform <min> <max>
+rgen_helper_message example: rgen zipfian <min> <max>
+rgen_helper_message example: rgen counter <min> <max>
+rgen_helper_message example: rgen reducer <min> <max>
+rgen_helper_message example: rgen skipinc <min> <max> <inc>
+rgen_helper_message example: rgen trace32 <filename>
+maptest_passes_message Usage: pass <nth> <magic-type> <magic> <repeat> <vlen> <S%> <D%> <G%> <rgen-opt>
+maptest_passes_message magic-type: 0:time, 1:count
+maptest_passes_message repeat: 0:damp
+maptest_passes_message rgen-opt: 0:sync, 1:wait, 2:nowait
+set MAP_TEST_PERF=y to enable perf recording

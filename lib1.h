@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-// includes {{{
+// includes 
 // C headers
 #include <inttypes.h>
 #include <stdbool.h>
@@ -31,9 +31,9 @@ extern "C" {
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/resource.h>
-// }}} includes
+//  includes
 
-// types {{{
+// types 
 typedef int_least8_t            s8;
 typedef int_least16_t           s16;
 typedef int_least32_t           s32;
@@ -43,9 +43,9 @@ typedef uint_least8_t           u8;
 typedef uint_least16_t          u16;
 typedef uint_least32_t          u32;
 typedef uint_least64_t          u64;
-// }}} types
+//  types
 
-// locks {{{
+// locks 
 typedef struct __spinlock
 {
     union
@@ -118,9 +118,9 @@ rwlock_lock_write(rwlock * const lock);
 
 extern void
 rwlock_unlock_write(rwlock * const lock);
-// }}} locks
+//  locks
 
-// timing {{{
+// timing 
 extern u64
 time_nsec(void);
 
@@ -135,9 +135,9 @@ time_diff_sec(const double last);
 
 extern u64
 timespec_diff(const struct timespec t0, const struct timespec t1);
-// }}} timing
+//  timing
 
-// debug {{{
+// debug 
 extern void
 debug_backtrace(void);
 
@@ -165,9 +165,9 @@ debug_perf_switch(void);
 
 extern void
 debug_perf_stop(void);
-// }}} debug
+//  debug
 
-// bits {{{
+// bits 
 extern u32
 bits_reverse_u32(const u32 v);
 
@@ -185,9 +185,9 @@ bits_rotl_u32(const u32 v, const u64 n);
 
 extern u32
 bits_rotr_u32(const u32 v, const u64 n);
-// }}} bits
+//  bits
 
-// bitmap {{{
+// bitmap 
 struct bitmap;
 
 extern struct bitmap *
@@ -219,9 +219,9 @@ bitmap_set_all0(struct bitmap * const bm);
 
 extern void
 bitmap_static_init(struct bitmap * const bm, const u64 bits);
-// }}} bitmap
+//  bitmap
 
-// bloom filter {{{
+// bloom filter 
 struct bloomfilter;
 
 extern struct bloomfilter *
@@ -235,9 +235,9 @@ bf_test(const struct bloomfilter * const bf, u64 hash64);
 
 extern void
 bf_destroy(struct bloomfilter * const bf);
-// }}} bloom filter
+//  bloom filter
 
-// process/thread {{{
+// process/thread 
 extern u64
 process_get_rss(void);
 
@@ -261,9 +261,9 @@ thread_fork_join(const u64 nr, void *(*func) (void *), void * const arg);
 
 extern int
 thread_create_at(const u64 cpu, pthread_t * const thread, void *(*start_routine) (void *), void * const arg);
-// }}} process/thread
+//  process/thread
 
-// mm {{{
+// mm 
 extern void *
 xalloc(const u64 align, const u64 size);
 
@@ -283,9 +283,9 @@ pages_alloc_best(const size_t size, const bool try_1gb, u64 * const size_out);
 
 extern void
 pages_unmap(void * const ptr, const size_t size);
-// }}} mm
+//  mm
 
-// oalloc {{{
+// oalloc 
 struct oalloc;
 
 extern struct oalloc *
@@ -296,9 +296,9 @@ oalloc_alloc(const u64 size, struct oalloc * const oa);
 
 extern void
 oalloc_destroy(struct oalloc * const oa);
-// }}} oalloc
+//  oalloc
 
-// gcache {{{
+// gcache 
 struct gcache;
 
 extern struct gcache *
@@ -326,9 +326,9 @@ gcache_iter_next(struct gcache_iter * const gi);
 
 extern void
 gcache_iter_destroy(struct gcache_iter * const gi);
-// }}} gcache
+//  gcache
 
-// cpucache {{{
+// cpucache 
 extern void
 cpu_clflush1(void * const ptr);
 
@@ -337,9 +337,9 @@ cpu_clflush(void * const ptr, const size_t size);
 
 extern void
 cpu_mfence(void);
-// }}} cpucache
+//  cpucache
 
-// qsort {{{
+// qsort 
 extern void
 qsort_u16(u16 * const array, const size_t nr);
 
@@ -357,9 +357,9 @@ qsort_u64_sample(const u64 * const array0, const u64 nr, const u64 res, FILE * c
 
 extern void
 qsort_double_sample(const double * const array0, const u64 nr, const u64 res, FILE * const out);
-// }}} qsort
+//  qsort
 
-// hash {{{
+// hash 
 extern u32
 crc32(const void * const ptr, const size_t size);
 
@@ -368,9 +368,9 @@ xxhash32(const void * const ptr, const size_t size);
 
 extern u64
 xxhash64(const void * const ptr, const size_t size);
-// }}} hash
+//  hash
 
-// xlog {{{
+// xlog 
 struct xlog
 {
     u64 nr_rec;
@@ -405,9 +405,9 @@ xlog_iter_create(const struct xlog * const xlog);
 extern bool
 xlog_iter_next(struct xlog_iter * const iter, void * const out);
 // free iter after use
-// }}} ulog/dlog
+//  ulog/dlog
 
-// string {{{
+// string 
 // size of out should be >= 10
 extern void
 str10_u32(void * const out, const u32 v);
@@ -427,9 +427,9 @@ str16_u64(void * const out, const u64 v);
 // user should free returned ptr after use
 extern char **
 string_tokens(const char * const str, const char * const delim);
-// }}} string
+//  string
 
-// damp {{{
+// damp 
 struct damp;
 
 extern struct damp *
@@ -452,9 +452,9 @@ damp_clean(struct damp * const d);
 
 extern void
 damp_destroy(struct damp * const d);
-// }}} damp
+//  damp
 
-// vctr {{{
+// vctr 
 struct vctr;
 
 extern struct vctr *
@@ -489,9 +489,9 @@ vctr_reset(struct vctr * const v);
 
 extern void
 vctr_destroy(struct vctr * const v);
-// }}} vctr
+//  vctr
 
-// rgen {{{
+// rgen 
 extern u64
 xorshift(const u64 x);
 
@@ -548,9 +548,9 @@ rgen_async_wait(struct rgen * const gen);
 
 extern void
 rgen_async_wait_all(struct rgen * const gen);
-// }}} rgen
+//  rgen
 
-// rcu {{{
+// rcu 
 struct rcu_node;
 
 extern struct rcu_node *
@@ -570,9 +570,9 @@ rcu_read_unref(struct rcu_node * const node, void * ptr);
 
 extern void
 rcu_update(struct rcu_node * const node, void * ptr);
-// }}} rcu
+//  rcu
 
-// server {{{
+// server 
 struct stream2
 {
     FILE * w;
@@ -607,9 +607,9 @@ stream2_create(const char * const host, const int port);
 extern void
 stream2_destroy(struct stream2 * const stream2);
 
-// }}} server
+//  server
 
-// kv {{{
+// kv 
 struct kv
 {
     u64 hash; // hashvalue of the key
@@ -688,9 +688,9 @@ kv_alloc_malloc(const u64 size, void * const priv);
 
 extern void
 kv_retire_free(struct kv * const kv, void * const priv);
-// }}} kv
+//  kv
 
-// kvmap {{{
+// kvmap 
 struct kvmap_api
 {
     // no create function in api
@@ -742,9 +742,9 @@ kvmap_api_helper_message(void);
 
 extern int
 kvmap_api_helper(int argc, char ** const argv, struct kvmap_api ** const out, struct kvmap_mm * const mm, const bool use_ucache);
-// }}} kvmap
+//  kvmap
 
-// kvmap2 {{{
+// kvmap2 
 struct kvmap2;
 
 extern struct kvmap2 *
@@ -784,9 +784,9 @@ kvmap2_iter_destroy(struct kvmap2_iter * const iter2);
 
 extern struct kvmap_api *
 kvmap2_api_create(struct kvmap2 * const map);
-// }}} kvmap2
+//  kvmap2
 
-// cuckoo {{{
+// cuckoo 
 struct cuckoo;
 
 extern struct cuckoo *
@@ -824,9 +824,9 @@ cuckoo_iter_destroy(struct cuckoo_iter * const iter);
 
 extern struct kvmap_api *
 cuckoo_api_create(struct cuckoo * const map);
-// }}} cuckoo
+//  cuckoo
 
-// skiplist {{{
+// skiplist 
 struct skiplist;
 
 extern struct skiplist *
@@ -875,9 +875,9 @@ skiplist_iter_destroy(struct skiplist_iter * const iter);
 
 extern struct kvmap_api *
 skiplist_api_create(struct skiplist * const map);
-// }}} skiplist
+//  skiplist
 
-// chainmap {{{
+// chainmap 
 struct chainmap;
 
 extern struct chainmap *
@@ -915,9 +915,9 @@ chainmap_iter_destroy(struct chainmap_iter * const iter);
 
 extern struct kvmap_api *
 chainmap_api_create(struct chainmap * const map);
-// }}} chainmap
+//  chainmap
 
-// bptree {{{
+// bptree 
 struct bptree;
 
 extern struct bptree *
@@ -957,9 +957,9 @@ bptree_iter_destroy(struct bptree_iter * const iter);
 
 extern struct kvmap_api *
 bptree_api_create(struct bptree * const map);
-// }}} bptree
+//  bptree
 
-// tcpmap {{{
+// tcpmap 
 struct tcpmap;
 
 extern struct tcpmap *
@@ -985,9 +985,9 @@ tcpmap_destroy(struct tcpmap * const map);
 
 extern struct kvmap_api *
 tcpmap_api_create(struct tcpmap * const map);
-// }}} tcpmap
+//  tcpmap
 
-// icache {{{
+// icache 
 struct icache;
 
 extern struct icache *
@@ -1014,7 +1014,7 @@ icache_destroy(struct icache * const cache);
 extern void
 icache_retire(struct icache * const icache, struct kv * const kv);
 
-extern  void
+extern void
 icache_uncache(struct icache * const cache, struct kv * const kv);
 
 extern void
@@ -1028,9 +1028,9 @@ icache_wrap_kvmap(struct icache * const cache, struct kvmap_api * const map_api)
 
 extern struct kvmap_api *
 icache_api_create(struct icache * const cache);
-// }}} icache
+//  icache
 
-// ucache {{{
+// ucache 
 extern struct kv *
 ucache_get(struct icache * const cache, const struct kv * const key, struct kv * const out);
 
@@ -1045,9 +1045,9 @@ ucache_del(struct icache * const cache, const struct kv * const key);
 
 extern struct kvmap_api *
 ucache_api_create(struct icache * const cache);
-// }}}
+// 
 
-// rcache {{{
+// rcache 
 typedef bool (* rcache_match_func)(const void * const kv, const void * const key);
 
 typedef u64 (* rcache_hash_func)(const void * const);
@@ -1083,9 +1083,9 @@ rcache_clean(struct rcache * const cache);
 
 extern void
 rcache_destroy(struct rcache * const cache);
-// }}} rcache
+//  rcache
 
-// maptest {{{
+// maptest 
 #define MAPTEST_END_TIME ((0))
 #define MAPTEST_END_COUNT ((1))
 typedef  bool (*maptest_perf_analyze_func)(struct vctr * const, const double, struct damp * const, char * const);
@@ -1138,7 +1138,7 @@ maptest_passes_message(void);
 
 extern bool
 maptest_main(int argc, char ** argv, int(*test_func)(const int, char ** const));
-// }}} maptest
+//  maptest
 
 #ifdef __cplusplus
 }
